@@ -12,9 +12,20 @@
 </head>
 
 <body>
-  <header class="header z-1 text-white overflow-hidden vh-100">
-    <img src="./media/images/logo.svg" alt="logo" class="w-25 z-3 position-relative pt-3 pe-5"
-      data-wow-duration="1s">
+  <nav class="position-fixed z-3 py-3 top-0 start-0 end-0 d-flex justify-content-between px-4 align-items-center"
+    style="background-color: rgba(0 , 0, 0, .7);backdrop-filter: blur(3px);">
+    <img src="./media/images/logo.svg" alt="logo" style="width: 20%;">
+    <div class="">
+      <ul class="text-white d-flex gap-3 align-items-center  m-0">
+        <li><a href="/">الصفحة الرئيسية</a></li>
+        <li><a href="./pages/power.html">مصادر الطاقة</a></li>
+        <li><a href="./pages/aboutus.html">من نحن؟</a></li>
+      </ul>
+    </div>
+    <div id="auth" class="d-flex gap-2">
+    </div>
+  </nav>
+  <header class="header z-1 text-white overflow-hidden vh-100 pt-5">
     <div class="z-3 position-relative pt-5 pe-5 w-75">
       <h1 class="fs-[3rem]  wow bounceInRight" data-wow-duration="1s" data-wow-delay="1s">مرحبًا بكم في موقعنا المخصص
         للطاقة الخضراء</h1>
@@ -63,58 +74,7 @@
 
 
     <div class="content p-4  mt-5 rounded bg-white">
-      <div class="educational-material text-white">
-        <h2 class="text-center  mb-5 col-12" style="color: var(--primary);">بعض مصادر الطاقة المتجددة</h2>
-        <div class="row gap-4 mb-4">
-          <div class="item hydrogen-energy position-relative rounded  overflow-hidden col-12 col-md"
-            style=" height: 300px;">
-            <div class="overlay"></div>
-            <div class="d-grid h-100 justify-content-center align-items-center z-3 position-relative "
-              style=" backdrop-filter:blur(2px);  width: fit-content; margin: 0 auto">
-              <div class="text-center">
-                <h2 class="text-center mb-5" style="font-size: 39px;">الهيدروجين الأخضر</h2>
-                <a href="./pages/hydrogen.html" class="link pb-2 text-primay text-bold "> اقرأ المزيد > </a>
-              </div>
-            </div>
-          </div>
-          <div class="item Hydroelectric-adhesive position-relative rounded overflow-hidden col-12 col-md"
-            style=" height: 300px;">
-            <div class="overlay"></div>
-            <div class="d-grid h-100 justify-content-center align-items-center z-3 position-relative "
-              style=" backdrop-filter:blur(2px); width: fit-content; margin: 0 auto;">
-              <div class="text-center">
-                <h2 class="text-center mb-5" style="font-size: 39px;">الطاقة الكهرومائية</h2>
-                <a href="./pages/hdropower.html" class="link pb-2 text-primay text-bold "> اقرأ المزيد > </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row gap-4 mb-4">
-          <div class="item thermal-energy position-relative rounded overflow-hidden  col-12 col-md"
-            style=" height: 300px;">
-            <div class="overlay"></div>
-            <div class="d-grid h-100 justify-content-center align-items-center z-3 position-relative "
-              style=" backdrop-filter:blur(2px); width: fit-content; margin: 0 auto;">
-              <div class="text-center">
-                <h2 class="text-center mb-5" style="font-size: 39px;">الطاقة الحرارية</h2>
-                <a href="./pages/thermal.html" class="link pb-2 text-primay text-bold "> اقرأ المزيد > </a>
-              </div>
-            </div>
-          </div>
-          <div class="item wind-details position-relative rounded overflow-hidden  col-12 col-md"
-            style=" height: 300px;">
-            <div class="overlay"></div>
-            <div class="d-grid h-100 justify-content-center align-items-center z-3 position-relative "
-              style=" backdrop-filter:blur(2px); width: fit-content; margin: 0 auto;">
-              <div class="text-center">
-                <h2 class="text-center mb-5" style="font-size: 39px;">طاقة الرياح</h2>
-                <a href="./pages/windpower.html" class="link pb-2 text-primay text-bold "> اقرأ المزيد > </a>
-              </div>
-            </div>
-          </div>
 
-        </div>
-      </div>
       <div class="latest-news ">
         <div class="title border-2 border-bottom" style="border-bottom-color: var(--primary) !important;">
           <div class="px-3 py-2 bg-primary " style="width: fit-content;">أخر الأخبار</div>
@@ -217,17 +177,42 @@
       </div>
     </div>
   </main>
-  <footer class="bg-primary py-2 mt-5 text-center">
-    فريق عمل ........
+  <footer class="bg-primary py-3 mt-5 text-center ">
+    <p>للتوصل معنا :</p>
+    <p>masder@gmail.com or +201151742768 </p>
   </footer>
 
   <script src=" ./js/bootstrap.bundle.min.js">
   </script>
-  <script src="./js/wow.min.js"></script>
+  <script>
 
-  <!-- <script>
-    new WOW().init();
-  </script> -->
+
+    const authContainer = document.getElementById("auth");
+
+    const content = `
+      <a class="btn" href="./pages/login.html">تسجيل الدخول</a>
+      <a class="btn" href="./pages/signup.html">الإشترك</a>
+    `;
+    const userName = window.localStorage.getItem("userName");
+
+    const logout = async () => {
+      await window.localStorage.removeItem("userName");
+      window.location.pathname = "./pages/login.html"
+    }
+    if (!userName) {
+      authContainer.innerHTML = content;
+    } else {
+      const userNameContainer = `
+        <div class="d-flex gap-2 align-items-center">
+          <p class="text-white m-0 text-capitalize">${userName}</p>
+          <button class="btn  text-primary" onclick="logout()">تسجيل الخروج</button>
+          </div>
+        
+      `
+      authContainer.innerHTML = userNameContainer
+    }
+
+  </script>
 </body>
 
 </html>

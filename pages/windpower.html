@@ -12,12 +12,24 @@
 </head>
 
 <body>
+  <nav class=" py-3  d-flex justify-content-between px-4 align-items-center"
+    style="background-color: var(--primary);backdrop-filter: blur(3px);">
+    <img src="../media/images/logo.svg" alt="logo" style="width: 20%;">
+    <div class="">
+      <ul class="text-white d-flex gap-3 align-items-center  m-0">
+        <li><a href="/">الصفحه الرئيسية</a></li>
+        <li><a href="./power.html">مصادر الطاقة</a></li>
+        <li><a href="./aboutus.html">من نحن؟</a></li>
+      </ul>
+    </div>
+    <div id="auth" class="d-flex gap-2">
+    </div>
+  </nav>
   <header class="header z-1 text-white overflow-hidden vh-30">
     <div class="overlay position-absolute" style="inset:0">
       <img src="../media/images/windpower/1.jpeg" alt="banner" class="w-100 h-100" style="object-fit: cover;">
     </div>
-    <a href="../index.html"> <img src="../media/images/logo.svg" alt="logo"
-        class="w-25 z-3 position-relative pt-3 pe-5 wow bounceInLeft" data-wow-duration="1s"> </a>
+
     <div class="z-3 position-relative pt-5 pe-5 w-75">
       <h1 class="fs-[3rem]  wow bounceInRight" data-wow-duration="1s" data-wow-delay="1s">طاقة الريح</h1>
       <p class="wow bounceInUp" style="font-size: 20px;font-weight: 300;" data-wow-duration="1s" data-wow-delay="2s">
@@ -141,10 +153,41 @@
         ساعيّ، ويختلف ذلك حسب إذا ما كانت التوربينات البحرية أو البرية.</p>
     </div>
   </main>
-  <footer class="bg-primary py-2 mt-5 text-center">
-    فريق عمل ........
+  <footer class="bg-primary py-3 mt-5 text-center ">
+    <p>للتوصل معنا :</p>
+    <p>masder@gmail.com or +201151742768 </p>
   </footer>
+
   <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+
+
+    const authContainer = document.getElementById("auth");
+
+    const content = `
+      <a class="btn" href="./login.html">تسجيل الدخول</a>
+      <a class="btn" href="./signup.html">الإشترك</a>
+    `;
+    const userName = window.localStorage.getItem("userName");
+
+    const logout = async () => {
+      await window.localStorage.removeItem("userName");
+      window.location.pathname = "./ogin.html"
+    }
+    if (!userName) {
+      authContainer.innerHTML = content;
+    } else {
+      const userNameContainer = `
+        <div class="d-flex gap-2 align-items-center">
+          <p class="text-white m-0 text-capitalize">${userName}</p>
+          <button class="btn  text-primary" onclick="logout()">تسجيل الخروج</button>
+          </div>
+        
+      `
+      authContainer.innerHTML = userNameContainer
+    }
+
+  </script>
 </body>
 
 </html>

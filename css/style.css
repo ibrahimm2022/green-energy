@@ -8,6 +8,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -32,6 +34,10 @@ input::placeholder {
   color: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 a {
   color: inherit !important;
   text-decoration: none;
@@ -41,6 +47,31 @@ a {
 p {
   font-size: 18px;
 }
+
+
+/* NAv Bar */
+
+nav .btn {
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  background-color: var(--grey);
+  transition: all ease .5s;
+}
+
+nav .btn:hover {
+  background-color: var(--grey);
+  opacity: .8;
+}
+
+
+/* NAv Bar */
+
+
+
+
+
+
 
 .header {
   background: url(../media/images/energy_banner.jpg) no-repeat;
@@ -71,6 +102,8 @@ p {
   background-color: white;
   clip-path: polygon(0 55%, 0% 100%, 100% 100%);
 } */
+
+
 
 
 .tricker-wraper {
@@ -189,5 +222,23 @@ p {
         color: #480eb9 !important;
       }
     }
+  }
+}
+
+@media (min-width: 576px) {
+  .teambox {
+    width: 100%;
+  }
+}
+
+@media (min-width:768px) {
+  .teambox {
+    width: calc((100%/2) - 1.5rem);
+  }
+}
+
+@media (min-width:992px) {
+  .teambox {
+    width: calc((100%/3) - 1.5rem);
   }
 }
